@@ -41,7 +41,7 @@ const data = [
 ];
 export const HowWorks = () => {
   return (
-    <section className="max-w-[1240px] mx-auto px-4 mb-20 md:mb-20 lg:mb-0 ">
+    <section className="max-w-[1240px] mx-auto px-4 lg:mb-0 ">
       <div className="flex flex-col gap-16">
         <div className="mt-16 md:mt-20 flex flex-col gap-5 md:flex-row justify-between md:items-center">
           {/* top header */}
@@ -72,7 +72,7 @@ export const HowWorks = () => {
           </div>
 
           {/* Cards Grid */}
-          <div className="relative z-10 w-full px-4 md:px-0 md:pt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 xl:gap-24">
+          <div className="relative z-10 w-full md:px-0 md:pt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 xl:gap-24">
             {data.map((item, index) => (
               <HowWorkCard key={index} item={item} />
             ))}

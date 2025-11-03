@@ -110,23 +110,29 @@ export default function Home() {
         setPhone("");
         setRole("");
       } else {
-        toast.error(responseData.message || "Failed to submit. Please try again.", {
+        toast.error(
+          responseData.message || "Failed to submit. Please try again.",
+          {
+            style: {
+              background: "#fef2f2",
+              color: "#dc2626",
+              border: "1px solid #fecaca",
+            },
+          }
+        );
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error(
+        "Network error. Please check your connection and try again.",
+        {
           style: {
             background: "#fef2f2",
             color: "#dc2626",
             border: "1px solid #fecaca",
           },
-        });
-      }
-    } catch (error) {
-      console.error(error);
-      toast.error("Network error. Please check your connection and try again.", {
-        style: {
-          background: "#fef2f2",
-          color: "#dc2626",
-          border: "1px solid #fecaca",
-        },
-      });
+        }
+      );
     } finally {
       setLoading(false);
     }
@@ -151,14 +157,14 @@ export default function Home() {
       {/* navbar */}
       <nav className="shadow-2xl py-4">
         <div className="max-w-[1340px] px-4 md:px-10 mx-auto">
-          <Image alt="main_logo" src={main_logo} className="h-12 w-40" />
+          <Image alt="main_logo" src={main_logo} className="h-10 md:h-12 w-40" />
         </div>
       </nav>
       {/* navbar */}
 
-      <section className="relative mb-16 md:mb-24 py-20">
+      <section className="relative mb-16 md:mb-24">
         <div
-          className="bg-cover bg-center md:bg-top bg-no-repeat h-[300px] md:h-[800px] flex items-center "
+          className="bg-cover bg-top-left md:bg-top bg-no-repeat  md:h-[800px] flex items-center "
           style={{
             backgroundImage: "url('/close-up-delivery-person-with-parcel.jpg')",
           }}
@@ -184,13 +190,13 @@ export default function Home() {
                 <div className="mt-6 flex flex-col sm:flex-row justify-center items-center sm:items-start gap-4 md:gap-12">
                   <button
                     onClick={() => scrollToSection("subscribe")}
-                    className="inline-block bg-[#115f59] hover:bg-[#0e7c73] text-white px-6 py-3 rounded-md font-semibold shadow-md transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+                    className="inline-block bg-[#115f59] hover:bg-[#0e7c73] text-white px-6 py-3 rounded-md font-medium shadow-md transition-all duration-300 text-xs md:text-base hover:scale-105 active:scale-95 cursor-pointer"
                   >
                     Tasker
                   </button>
                   <button
                     onClick={() => scrollToSection("subscribe")}
-                    className="inline-block border border-white/40 hover:bg-white/10 text-white px-6 py-2.5 rounded-md font-medium transition-all duration-300 hover:scale-105 active:scale-95 "
+                    className="inline-block border border-white/40 hover:bg-white/10 text-white px-6 py-2.5 rounded-md font-medium transition-all duration-300 text-xs md:text-base  hover:scale-105 active:scale-95 "
                   >
                     Freelancer
                   </button>
@@ -204,7 +210,7 @@ export default function Home() {
       {/* Why Choose TaskAlley Section */}
       <div className="max-w-[1340px] mx-auto px-4 md:px-10">
         <div className="text-center flex flex-col gap-4 mb-12 md:mb-20">
-          <h4 className="font-bold text-3xl lg:text-4xl">
+          <h4 className="font-bold text-2xl md:text-3xl lg:text-4xl">
             Why Choose TaskAlley?
           </h4>
           <p className="text-[#6B7280] max-w-3xl mx-auto">
@@ -280,14 +286,14 @@ export default function Home() {
       </div>
 
       {/* lottie section */}
-      <section className=" pb-5">
+      <section className=" pb-5 pt-12">
         <div className="max-w-[1240px] mx-auto px-4 flex justify-between items-center gap-10 flex-col md:flex-row">
           {/* left side */}
           <div className="flex flex-col gap-6 pl-2">
             <h3 className="text-2xl font-medium md:leading-normal text-[#6B7280]">
               We’re Almost There!
             </h3>
-            <p className="text-3xl font-bold ">
+            <p className="text-2xl md:text-3xl font-bold ">
               TaskAlley is launching soon. Be the first to experience the future
               of smarter workflows.
             </p>
@@ -351,7 +357,7 @@ export default function Home() {
       <HowWorks />
 
       {/* CTA Section */}
-      <section id="subscribe" className="bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
+      <section id="subscribe" className="bg-gray-50 pt-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-stretch justify-between rounded-lg overflow-hidden shadow-lg">
           {/* Left Side */}
           <div className="relative flex-1 bg-teal-700 text-white p-8 sm:p-10 lg:p-12 flex items-center justify-center">
@@ -360,10 +366,10 @@ export default function Home() {
             <div className="absolute hidden md:block -bottom-20 right-0 w-64 sm:w-80 h-64 sm:h-80 bg-teal-500 rounded-full opacity-40"></div>
 
             <div className="relative z-10 text-center md:text-left">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-snug">
+              <h2 className=" text-xl sm:text-3xl md:text-4xl font-bold leading-snug">
                 Start Posting Tasks for Free
               </h2>
-              <p className="mt-3 sm:mt-4 text-base sm:text-lg text-gray-100">
+              <p className="mt-3 sm:mt-4 text-sm md:text-base sm:text-lg text-gray-100">
                 Subscribe today and unlock smarter ways to get work done.
               </p>
             </div>
@@ -455,29 +461,45 @@ export default function Home() {
       {/* navbarrrrrrrrrr */}
 
       <section className="bg-black py-4 mt-20">
-        <div className="project_container px-6 flex flex-wrap items-center  justify-between">
+        <div className="project_container px-6 flex flex-wrap items-center gap-6 justify-between">
           <div>
             {/* link main logo to homepage */}
             <Link href="/">
-              <Image src={main_logo} alt="TaskAlley logo" className="h-16 w-40" />
+              <Image
+                src={main_logo}
+                alt="TaskAlley logo"
+                className="h-16 w-40"
+              />
             </Link>
           </div>
           <div className="text-white">Copyright 2025 TaskAlley.com</div>
           <div className="flex gap-4 items-center">
             {/* social icons - each icon links to its proper external URL */}
-            <Link href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-             <div className=" bg-green">
-               <FaFacebook  className="text-white"/>
-             </div>
+            <Link
+              href="https://www.facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div className=" bg-green">
+                <FaFacebook className="text-white" />
+              </div>
             </Link>
 
-            <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+            <Link
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <div className=" bg-green">
                 <FaTwitter className="text-white" />
               </div>
             </Link>
 
-            <Link href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
+            <Link
+              href="https://www.youtube.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <div className=" bg-green">
                 <FaYoutube className="text-white" />
               </div>
