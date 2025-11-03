@@ -11,7 +11,9 @@ import Lottie from "lottie-react";
 
 import Hero from "../../public/laptop.svg";
 
-import all_icon from "../../public/all_icon.png";
+import fbIcon from "../../public/facebook.svg";
+import twitterIcon from "../../public/twitter.svg";
+import ytIcon from "../../public/youtube.svg";
 import { HowWorks } from "@/components/HowWorks";
 import PopularService from "@/components/PopularService";
 import { useEffect, useState } from "react";
@@ -218,7 +220,7 @@ export default function Home() {
         </div>
         {/* features grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
-          <div className="flex flex-col gap-4 p-6 md:p-8 bg-white rounded-xl shadow-sm">
+          <div className="flex flex-col gap-4 p-6 md:p-8 hover:bg-white transition-all duration-300 rounded-xl shadow-sm">
             <div className="flex items-center gap-4">
               <Image src={image1} alt="Save Time Icon" className="w-16" />
               <p className="text-xl font-medium">Save Time</p>
@@ -234,7 +236,7 @@ export default function Home() {
             </div>
           </div>
           {/* first */}
-          <div className="flex flex-col gap-3 p-6 md:p-8">
+          <div className="flex flex-col gap-4 p-6 md:p-8 hover:bg-white transition-all duration-300 rounded-xl shadow-sm">
             <div className="flex items-center gap-3">
               <Image src={image2} className="w-16 " alt="image2" />
               <p className="text-xl font-medium">Smarter Collaboration</p>
@@ -250,7 +252,7 @@ export default function Home() {
             </div>
           </div>
           {/* first */}
-          <div className="flex flex-col gap-3 p-6 md:p-8">
+          <div className="flex flex-col gap-4 p-6 md:p-8 hover:bg-white transition-all duration-300 rounded-xl shadow-sm">
             <div className="flex items-center gap-3">
               <Image src={image3} className="w-16 " alt="image3" />
               <p className="text-xl font-medium">Secure & Reliable</p>
@@ -266,7 +268,7 @@ export default function Home() {
             </div>
           </div>
           {/* first */}
-          <div className="flex flex-col gap-3 p-6 md:p-8">
+          <div className="flex flex-col gap-4 p-6 md:p-8 hover:bg-white transition-all duration-300 rounded-xl shadow-sm">
             <div className="flex items-center gap-3">
               <Image alt="image4" src={image4} className="w-16 " />
               <p className="text-xl font-medium">Insightful Tracking</p>
@@ -461,12 +463,24 @@ export default function Home() {
       <section className="bg-black py-4 mt-20">
         <div className="project_container px-6 flex flex-wrap items-center  justify-between">
           <div>
-            <Image src={main_logo} alt="main logg" className="h-16 w-40" />
+            {/* link main logo to homepage */}
+            <Link href="/">
+              <Image src={main_logo} alt="TaskAlley logo" className="h-16 w-40" />
+            </Link>
           </div>
           <div className="text-white">Copyright 2025 TaskAlley.com</div>
-          <div className="flex gap-2">
-            <Link href="www.facebook.com">
-              <Image src={all_icon} className="w-28" />
+          <div className="flex gap-4 items-center">
+            {/* social icons - each icon links to its proper external URL */}
+            <Link href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+              <Image src={fbIcon} alt="Facebook" className="h-6 w-6" />
+            </Link>
+
+            <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+              <Image src={twitterIcon} alt="Twitter" className="h-5 w-5" />
+            </Link>
+
+            <Link href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
+              <Image src={ytIcon} alt="YouTube" className="h-5 w-5" />
             </Link>
           </div>
         </div>
