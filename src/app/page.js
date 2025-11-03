@@ -8,10 +8,8 @@ import image4 from "../../public/img4.png";
 import roketAnimation from "@/../public/rocket launch.json";
 import main_logo from "../../public/main_logo_svg.svg";
 import Lottie from "lottie-react";
+import { FaFacebook, FaTwitter, FaYoutube } from "react-icons/fa";
 
-import Hero from "../../public/laptop.svg";
-
-import fbIcon from "../../public/facebook.svg";
 import twitterIcon from "../../public/twitter.svg";
 import ytIcon from "../../public/youtube.svg";
 import { HowWorks } from "@/components/HowWorks";
@@ -29,9 +27,9 @@ export default function Home() {
   const [role, setRole] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const toggleFAQ = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
+  // const toggleFAQ = (index) => {
+  //   setOpenIndex(openIndex === index ? null : index);
+  // };
 
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -87,7 +85,6 @@ export default function Home() {
       phone,
       role,
     };
-    console.log("send toDB----->", data);
 
     try {
       const response = await fetch(`${baseUrl()}/subscriber/create`, {
@@ -472,15 +469,21 @@ export default function Home() {
           <div className="flex gap-4 items-center">
             {/* social icons - each icon links to its proper external URL */}
             <Link href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-              <Image src={fbIcon} alt="Facebook" className="h-6 w-6" />
+             <div className=" bg-green">
+               <FaFacebook  className="text-white"/>
+             </div>
             </Link>
 
             <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-              <Image src={twitterIcon} alt="Twitter" className="h-5 w-5" />
+              <div className=" bg-green">
+                <FaTwitter className="text-white" />
+              </div>
             </Link>
 
             <Link href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
-              <Image src={ytIcon} alt="YouTube" className="h-5 w-5" />
+              <div className=" bg-green">
+                <FaYoutube className="text-white" />
+              </div>
             </Link>
           </div>
         </div>
