@@ -21,6 +21,7 @@ import { toast } from "sonner";
 
 export default function Home() {
   const [openIndex, setOpenIndex] = useState(null);
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [role, setRole] = useState("");
@@ -38,10 +39,8 @@ export default function Home() {
   });
 
   useEffect(() => {
-    // Run only in browser
     if (typeof window === "undefined") return;
 
-    // Load or create target date (90 days from first visit)
     let savedTarget = localStorage.getItem("targetDate");
     let targetDate;
 
@@ -70,7 +69,6 @@ export default function Home() {
       });
     };
 
-    // Initial call + interval
     updateTime();
     const interval = setInterval(updateTime, 1000);
 
@@ -82,10 +80,12 @@ export default function Home() {
     setLoading(true);
 
     const data = {
+      name,
       email,
       phone,
-      role, // include role in payload
+      role,
     };
+    console.log("send toDB----->", data);
 
     try {
       const response = await fetch(`${baseUrl()}/subscriber/create`, {
@@ -96,12 +96,9 @@ export default function Home() {
         body: JSON.stringify(data),
       });
 
+      const responseData = await response.json();
+
       if (response.ok) {
-        toast.success("Thank you for subscribing!");
-        setEmail("");
-        setPhone("");
-        setRole("");
-      } else {
         toast.success("Subscription successful!", {
           style: {
             background: "#dcfce7",
@@ -109,10 +106,22 @@ export default function Home() {
             border: "1px solid #bbf7d0",
           },
         });
+        setName("");
+        setEmail("");
+        setPhone("");
+        setRole("");
+      } else {
+        toast.error(responseData.message || "Failed to submit. Please try again.", {
+          style: {
+            background: "#fef2f2",
+            color: "#dc2626",
+            border: "1px solid #fecaca",
+          },
+        });
       }
     } catch (error) {
       console.error(error);
-      toast.error(error?.data?.message || "Something went wrong", {
+      toast.error("Network error. Please check your connection and try again.", {
         style: {
           background: "#fef2f2",
           color: "#dc2626",
@@ -124,57 +133,94 @@ export default function Home() {
     }
   };
 
+  const scrollToSection = (elementId) => {
+    const element = document.getElementById(elementId);
+    if (element) {
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
-    <div className="bg-[#F9FAFB]">
+    <div className="bg-[#F9FAFB] scroll-smooth">
       {/* navbar */}
-      <nav className="shadow-2xl py-3 ">
-        <div className=" py-2  max-w-[1340px] px-10 mx-auto ">
+      <nav className="shadow-2xl py-4">
+        <div className="max-w-[1340px] px-4 md:px-10 mx-auto">
           <Image alt="main_logo" src={main_logo} className="h-12 w-40" />
         </div>
       </nav>
       {/* navbar */}
 
-      <div className="project_container px-4">
-        <div className="flex flex-col lg:flex-row items-center py-12 lg:py-40">
-          <div className="flex flex-col items-center  md:items-start gap-4 md:text-left max-w-2xl">
-            <h6 className="text-lg sm:text-xl md:text-2xl text-[#115E59] font-semibold">
-              Welcome to TaskAlley
-            </h6>
+      <section className="relative mb-16 md:mb-24">
+        <div
+          className="bg-cover h-[600px] md:h-[800px] flex items-center"
+          style={{
+            backgroundImage: "url('/close-up-delivery-person-with-parcel.jpg')",
+            backgroundPosition: "center top",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+          }}
+        >
+          <div className="absolute inset-0 bg-black/20 backdrop-blur-xs"></div>
 
-            <h1 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-snug text-center md:text-start lg:text-start">
-              Your trusted ally <br className="hidden md:block" /> for smarter
-              tasking in Nigeria
-            </h1>
+          <div className="relative z-10 max-w-[1340px] mx-auto w-full px-4 md:px-10">
+            <div className="flex justify-center items-center gap-8 md:gap-12 py-12 md:py-20">
+              <div className=" text-white text-center md:text-left max-w-3xl">
+                <h6 className="text-lg sm:text-xl text-center md:text-2xl text-green-700 font-semibold">
+                  Welcome to TaskAlley
+                </h6>
 
-            <p className="text-sm sm:text-base text-gray-500 leading-relaxed text-center md:text-start lg:text-start">
-              TaskAlley is more than a marketplace — it’s your one-stop hub to
-              post, find, and manage tasks with verified providers.
-            </p>
-          </div>
+                <h1 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-center">
+                  Your trusted Alley for smarter tasking in Nigeria
+                </h1>
 
-          <div>
-            <Image alt="Hero" src={Hero} />
+                <p className="mt-4 text-sm sm:text-base text-white  leading-relaxed text-center ">
+                  TaskAlley is more than a marketplace — post, find, and manage
+                  tasks with verified providers. Fast, secure and reliable.
+                </p>
+
+                <div className="mt-6 flex flex-col sm:flex-row justify-center items-center sm:items-start gap-12">
+                  <button
+                    onClick={() => scrollToSection("subscribe")}
+                    className="inline-block bg-[#115f59] hover:bg-[#0e7c73] text-white px-6 py-3 rounded-md font-semibold shadow-md transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+                  >
+                    Tasker
+                  </button>
+                  <button
+                    onClick={() => scrollToSection("subscribe")}
+                    className="inline-block border border-white/40 hover:bg-white/10 text-white px-6 py-2.5 rounded-md font-medium transition-all duration-300 hover:scale-105 active:scale-95 "
+                  >
+                    Freelancer
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Why Choose TaskAlleey Section */}
-      <div className="project_container px-2 ">
-        <div className=" text-center flex flex-col gap-3 pb-4 md:pb-20">
+      {/* Why Choose TaskAlley Section */}
+      <div className="max-w-[1340px] mx-auto px-4 md:px-10">
+        <div className="text-center flex flex-col gap-4 mb-12 md:mb-20">
           <h4 className="font-bold text-3xl lg:text-4xl">
             Why Choose TaskAlley?
           </h4>
-          <p className="text-[#6B7280]">
+          <p className="text-[#6B7280] max-w-3xl mx-auto">
             Experience excellence in digital craftsmanship with our team of
-            skilled professionals <br /> dedicated to delivering exceptional
-            results.
+            skilled professionals dedicated to delivering exceptional results.
           </p>
         </div>
-        {/* first */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-10">
-          <div className="flex flex-col gap-3 p-6 md:p-8">
-            <div className="flex items-center gap-3">
-              <Image src={image1} alt="imagae1" className="w-16 " />
+        {/* features grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
+          <div className="flex flex-col gap-4 p-6 md:p-8 bg-white rounded-xl shadow-sm">
+            <div className="flex items-center gap-4">
+              <Image src={image1} alt="Save Time Icon" className="w-16" />
               <p className="text-xl font-medium">Save Time</p>
             </div>
             <div>
@@ -238,7 +284,7 @@ export default function Home() {
       </div>
 
       {/* lottie section */}
-      <section className="pt-20 pb-20">
+      <section className=" pb-5">
         <div className="max-w-[1240px] mx-auto px-4 flex justify-between items-center gap-10 flex-col md:flex-row">
           {/* left side */}
           <div className="flex flex-col gap-6 pl-2">
@@ -297,12 +343,6 @@ export default function Home() {
           </div>
           {/* right side */}
           <div className="relative">
-            {/* <Image
-              src={bgimg}
-              alt="Hand holding mobile phone"
-              height={1200}
-              className="object-cover"
-            /> */}
             <Lottie animationData={roketAnimation} />
           </div>
         </div>
@@ -315,13 +355,13 @@ export default function Home() {
       <HowWorks />
 
       {/* CTA Section */}
-      <section className="bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
+      <section id="subscribe" className="bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-stretch justify-between rounded-lg overflow-hidden shadow-lg">
           {/* Left Side */}
           <div className="relative flex-1 bg-teal-700 text-white p-8 sm:p-10 lg:p-12 flex items-center justify-center">
             {/* Background Shapes */}
             <div className="absolute hidden md:block -top-20 -left-28 w-80 sm:w-96 h-80 sm:h-96 bg-teal-800 rounded-full opacity-30"></div>
-            <div className="absolute hidden md:block -bottom-20 -right-0 w-64 sm:w-80 h-64 sm:h-80 bg-teal-500 rounded-full opacity-40"></div>
+            <div className="absolute hidden md:block -bottom-20 right-0 w-64 sm:w-80 h-64 sm:h-80 bg-teal-500 rounded-full opacity-40"></div>
 
             <div className="relative z-10 text-center md:text-left">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-snug">
@@ -336,13 +376,24 @@ export default function Home() {
           {/* Right Side */}
           <div className="flex-1 bg-white p-6 sm:p-8 md:p-10 flex flex-col justify-center">
             <h3 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-5 sm:mb-6 text-center md:text-left">
-              Subscribe Now
+              Join WaitingList
             </h3>
 
             <form
               className="flex flex-col gap-4 w-full"
               onSubmit={handleSubmit}
             >
+              {/* Name Input */}
+              <div className="flex flex-col sm:flex-row gap-4 w-full">
+                <input
+                  type="text"
+                  placeholder="Enter your name"
+                  className="flex-1 w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 transition"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
               {/* Email Input */}
               <div className="flex flex-col sm:flex-row gap-4 w-full">
                 <input
@@ -378,8 +429,8 @@ export default function Home() {
                   <option value="" disabled>
                     Select Role
                   </option>
-                  <option value="Provider">Provider</option>
-                  <option value="Customer">Customer</option>
+                  <option value="Provider">Tasker</option>
+                  <option value="Customer">Freelancer</option>
                 </select>
               </div>
 

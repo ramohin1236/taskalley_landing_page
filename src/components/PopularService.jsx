@@ -1,47 +1,69 @@
 import Image from "next/image";
 import React from "react";
 import popularcateIcon from "../../public/popularcate.svg";
-import Link from "next/link";
-import righArrowIcon from "../../public/whitearrow.svg";
-import cateimg1 from "../../public/cat1.svg";
-import cateimg2 from "../../public/service2.svg";
-import service3 from "../../public/service3.svg";
-import service4 from "../../public/service4.svg";
-import service5 from "../../public/service5.svg";
-import service6 from "../../public/service6.svg";
+import delivery from "../../public/delivery-bike.png";
+import virtual from "../../public/virtual-class.png";
+import cosmetics from "../../public/cosmetics.png";
+import man from "../../public/man.png";
+import graphic from "../../public/illustration.png";
+import banner from "../../public/banner.png";
+import technical from "../../public/technical-support.png";
+import truck from "../../public/moving-truck.png";
+import mop from "../../public/mop.png";
+import plumber from "../../public/plumber.png";
 import CateCard from "./CateCard";
 
 
 const data = [
   {
     id: 1,
-    cateName: "House Cleaning",
-    icon: cateimg1,
+    cateName: "Home Cleaning & Laundry",
+    icon: mop,
   },
   {
     id: 2,
-    cateName: "Electricity Services",
-    icon: cateimg2,
+    cateName: "Plumbing & Electrical Repairs",
+    icon: plumber,
   },
   {
     id: 3,
-    cateName: "Furniture Replacement",
-    icon: service3,
+    cateName: "Delivery & Errands",
+    icon: delivery,
   },
   {
     id: 4,
-    cateName: "Mechanic Zone",
-    icon: service4,
+    cateName: "Tutoring & Lessons",
+    icon: virtual,
   },
   {
     id: 5,
-    cateName: "Plumber Service",
-    icon: service5,
+    cateName: "Beauty & Grooming",
+    icon: cosmetics,
   },
   {
     id: 6,
-    cateName: "Painter Chaise",
-    icon: service6,
+    cateName: "Handyman & Furniture Assembly",
+    icon: man,
+  },
+  {
+    id: 7,
+    cateName: "Graphic Design & Digital Services",
+    icon: graphic,
+  },
+  {
+    id: 8,
+    cateName: "Event & Catering Services",
+    icon: banner,
+  },
+  {
+    id: 9,
+    cateName: "IT & Technical Support",
+    icon: technical,
+  },
+  {
+    id: 10,
+    cateName: "Moving & Transport Help",
+    icon: truck,
   },
 ];
 
@@ -64,9 +86,9 @@ const PopularService = () => {
                 CATEGORIES
               </p>
             </div>
-            <h3 className="font-semibold text-2xl md:text-4xl flex flex-col gap-6">
-              Most Popular Categories
-            </h3>
+            {/* <h3 className="font-semibold text-2xl md:text-4xl flex flex-col gap-6">
+              Categories
+            </h3> */}
           </div>
          
 
