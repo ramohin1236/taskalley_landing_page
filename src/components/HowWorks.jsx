@@ -2,9 +2,10 @@ import Image from "next/image";
 import React from "react";
 import popularcateIcon from "../../public/popularcate.svg";
 import bgline from "../../public/bg-line.svg";
-import cateimg1 from "../../public/Frame (8).svg";
 import cateimg2 from "../../public/hand.svg";
 import service3 from "../../public/hand.svg";
+import cateimg from "../../public/user.png";
+import shopping from "../../public/shopping-list.png";
 import HowWorkCard from "./HowWorkCard";
 
 
@@ -17,14 +18,14 @@ const data = [
     cateName: "Create Your Account",
     providers:
       "Sign up as a customer or service provider directly on our website.",
-    icon: cateimg1,
+    icon: cateimg,
   },
   {
     id: 2,
     cateName: "Find or List a Service ",
     providers:
       "Sign up as a customer or service provider directly on our website.",
-    icon: cateimg1,
+    icon: shopping,
   },
   {
     id: 2,
