@@ -42,7 +42,7 @@ const data = [
 export const HowWorks = () => {
   return (
     <section className="max-w-[1240px] mx-auto px-4 lg:mb-0 ">
-      <div className="flex flex-col gap-16">
+      <div className="flex flex-col gap-10">
         <div className="mt-16 md:mt-20 flex flex-col gap-5 md:flex-row justify-between md:items-center">
           {/* top header */}
           <div>
