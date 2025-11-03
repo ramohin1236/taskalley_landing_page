@@ -6,6 +6,7 @@ import cateimg2 from "../../public/hand.svg";
 import service3 from "../../public/hand.svg";
 import cateimg from "../../public/user.png";
 import shopping from "../../public/shopping-list.png";
+import booking from "../../public/booking.png";
 import HowWorkCard from "./HowWorkCard";
 
 
@@ -37,7 +38,7 @@ const data = [
     id: 3,
     cateName: "Book & Connect Securely",
     providers: "Confirm bookings, chat in real-time, and make secure payments.",
-    icon: service3,
+    icon: booking,
   },
 ];
 export const HowWorks = () => {
