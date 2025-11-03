@@ -156,14 +156,11 @@ export default function Home() {
       </nav>
       {/* navbar */}
 
-      <section className="relative mb-16 md:mb-24">
+      <section className="relative mb-16 md:mb-24 py-20">
         <div
-          className="bg-cover h-[600px] md:h-[800px] flex items-center"
+          className="bg-cover bg-center md:bg-top bg-no-repeat h-[300px] md:h-[800px] flex items-center "
           style={{
             backgroundImage: "url('/close-up-delivery-person-with-parcel.jpg')",
-            backgroundPosition: "center top",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
           }}
         >
           <div className="absolute inset-0 bg-black/20 backdrop-blur-xs"></div>
@@ -175,7 +172,7 @@ export default function Home() {
                   Welcome to TaskAlley
                 </h6>
 
-                <h1 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-center">
+                <h1 className="mt-3 text-xl sm:text-4xl md:text-5xl font-bold leading-tight text-center">
                   Your trusted Alley for smarter tasking in Nigeria
                 </h1>
 
@@ -184,7 +181,7 @@ export default function Home() {
                   tasks with verified providers. Fast, secure and reliable.
                 </p>
 
-                <div className="mt-6 flex flex-col sm:flex-row justify-center items-center sm:items-start gap-12">
+                <div className="mt-6 flex flex-col sm:flex-row justify-center items-center sm:items-start gap-4 md:gap-12">
                   <button
                     onClick={() => scrollToSection("subscribe")}
                     className="inline-block bg-[#115f59] hover:bg-[#0e7c73] text-white px-6 py-3 rounded-md font-semibold shadow-md transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
