@@ -13,7 +13,7 @@ const HowWorkCard = ({ item }) => {
       {/* Content */}
       <div className="relative z-10 flex flex-col gap-4">
         <Image src={item.icon} alt={item.cateName}
-        className="w-10 md:w-full"
+        className="w-10 md:w-12"
         />
         <h4 className="text-xl md:text-2xl font-medium">{item.cateName}</h4>
         <p className="text-sm md:text-base">{item.providers}</p>
