@@ -29,12 +29,6 @@ const data = [
     icon: shopping,
   },
   {
-    id: 2,
-    cateName: "Find or List a Service",
-    providers: "Customers can browse services by category, location, or price.",
-    icon: cateimg2,
-  },
-  {
     id: 3,
     cateName: "Book & Connect Securely",
     providers: "Confirm bookings, chat in real-time, and make secure payments.",
