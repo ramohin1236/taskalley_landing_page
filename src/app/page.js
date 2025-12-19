@@ -27,10 +27,6 @@ export default function Home() {
   const [role, setRole] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // const toggleFAQ = (index) => {
-  //   setOpenIndex(openIndex === index ? null : index);
-  // };
-
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -41,16 +37,8 @@ export default function Home() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    let savedTarget = localStorage.getItem("targetDate");
-    let targetDate;
-
-    if (savedTarget) {
-      targetDate = new Date(savedTarget);
-    } else {
-      targetDate = new Date();
-      targetDate.setDate(targetDate.getDate() + 90);
-      localStorage.setItem("targetDate", targetDate.toISOString());
-    }
+    // Set target date to January 12, 2026
+    const targetDate = new Date("2026-01-12T00:00:00");
 
     const updateTime = () => {
       const now = new Date().getTime();
@@ -262,8 +250,8 @@ export default function Home() {
                 Your safety and trust are our top priorities. Every task
                 provider goes through verification checks, and all payments are
                 held securely until the job is completed to your satisfaction.
-                With Task Alley’s fraud detection signals and dispute resolution
-                center, you’re always protected.
+                With Task Alley's fraud detection signals and dispute resolution
+                center, you're always protected.
               </p>
             </div>
           </div>
@@ -291,7 +279,7 @@ export default function Home() {
           {/* left side */}
           <div className="flex flex-col gap-6 pl-2">
             <h3 className="text-2xl font-medium md:leading-normal text-[#6B7280]">
-              We’re Almost There!
+              We're Almost There!
             </h3>
             <p className="text-2xl md:text-3xl font-bold ">
               TaskAlley is launching soon. Be the first to experience the future
@@ -301,9 +289,22 @@ export default function Home() {
               Join thousands of innovators already on the waitlist. Early
               signups get exclusive access + 20% off.
             </p>
+            
+            {/* Launch Date Display */}
+            <div className="mt-2 p-4 ">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-[#115E59] rounded-full animate-pulse"></div>
+                <p className="text-lg font-semibold text-[#115E59]">
+                  Launch Date: January 12, 2026
+                </p>
+              </div>
+            </div>
+            
             <div className="flex gap-2 text-center">
               {/* Days */}
-              <div className="flex flex-col items-center p-2 rounded-lg bg-[#E6F4F1] w-20">
+              <div className="flex flex-col items-center p-2 rounded-lg bg-[#E6F4F1] w-20
+              border border-[#115E59]/20
+              ">
                 <span className="text-2xl md:text-4xl font-bold text-[#115E59]">
                   {timeLeft.days}
                 </span>
@@ -313,7 +314,7 @@ export default function Home() {
               </div>
 
               {/* Hours */}
-              <div className="flex flex-col items-center p-2 rounded-lg bg-[#E6F4F1] w-20">
+              <div className="flex flex-col items-center p-2 rounded-lg bg-[#E6F4F1] w-20 border border-[#115E59]/20">
                 <span className="text-2xl md:text-4xl font-bold text-[#115E59]">
                   {timeLeft.hours}
                 </span>
@@ -323,7 +324,7 @@ export default function Home() {
               </div>
 
               {/* Minutes */}
-              <div className="flex flex-col items-center p-2 rounded-lg bg-[#E6F4F1] w-20">
+              <div className="flex flex-col items-center p-2 rounded-lg bg-[#E6F4F1] w-20 border border-[#115E59]/20">
                 <span className="text-2xl md:text-4xl font-bold text-[#115E59]">
                   {timeLeft.minutes}
                 </span>
@@ -333,7 +334,7 @@ export default function Home() {
               </div>
 
               {/* Seconds */}
-              <div className="flex flex-col items-center p-2 rounded-lg bg-[#E6F4F1] w-20">
+              <div className="flex flex-col items-center p-2 rounded-lg bg-[#E6F4F1] w-20 border border-[#115E59]/20">
                 <span className="text-2xl md:text-4xl font-bold text-[#115E59]">
                   {timeLeft.seconds}
                 </span>
@@ -452,7 +453,7 @@ export default function Home() {
 
             {/* Small Note */}
             <p className="text-gray-500 text-sm mt-4 text-center md:text-left">
-              * We’ll never share your email or phone number.
+              * We'll never share your email or phone number.
             </p>
           </div>
         </div>
