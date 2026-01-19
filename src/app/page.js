@@ -295,7 +295,7 @@ export default function Home() {
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-[#115E59] rounded-full animate-pulse"></div>
                 <p className="text-lg font-semibold text-[#115E59]">
-                  Launch Date: January 12, 2026
+                  Launch Date: February 20, 2026
                 </p>
               </div>
             </div>
